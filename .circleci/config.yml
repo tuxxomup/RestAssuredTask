@@ -30,15 +30,14 @@ jobs:
       - run:
           name: Test
           command: mvn test -Denv=qaEnv
-          
-      # REst assured
-      - run:
-          name: generate allure report
-          command:  |
-            sudo npm install -g allure-commandline
-            allure generate --clean
-          when: always    
-     
+      #Test
+      - allure/report:
+          target-path: allure-results 
+          results-path: allure-results 
+          artifact-path: Report/Allure
+      - run: 
+          name: Allure report generation
+          command: allure serves
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
