@@ -32,7 +32,7 @@ jobs:
           command: mvn test -Denv=qaEnv
       #Test
       - allure/report:
-          target-path: allure-reports 
+          target-path: allure-results 
           results-path: allure-results 
           artifact-path: Report/Allure
       - run: 
