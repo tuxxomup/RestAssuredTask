@@ -3,7 +3,7 @@ package common;
 import static common.BaseConfig.getRequestSpecification;
 import static common.BaseConfig.getResponseSpecification;
 
-import common.BaseURIBuilder;
+import com.google.gson.Gson;
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
 import io.restassured.path.json.JsonPath;
@@ -17,6 +17,7 @@ public class TestBase {
 
     public static RequestSpecification requestSpec;
     public static ResponseSpecification responseOkSpec;
+    public static Gson gson;
 
     @BeforeEach
     public void setup() throws IOException {
@@ -27,5 +28,6 @@ public class TestBase {
 
         requestSpec = getRequestSpecification();
         responseOkSpec = getResponseSpecification();
+        gson = new Gson();
     }
 }

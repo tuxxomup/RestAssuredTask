@@ -1,8 +1,17 @@
 package models;
 
 public class Geo {
+
     private Double lat;
     private Double lng;
+
+    Geo() {
+    }
+
+    public Geo(Double lat, Double lng) {
+        this.lat = lat;
+        this.lng = lng;
+    }
 
     public Double getLat() {
         return lat;
