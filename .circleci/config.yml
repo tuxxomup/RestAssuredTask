@@ -20,7 +20,7 @@ jobs:
     steps:
       # Checkout the code as the first step.
       - checkout
-      - allure/isntall:
+      - allure/install:
           version: '2.13.1'
       - allure/report:
           results-path: allure-results
