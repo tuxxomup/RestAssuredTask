@@ -22,6 +22,8 @@ jobs:
       - checkout
       - allure/isntall:
           version: '2.13.1'
+      - allure/report:
+          results-path: allure-results
       # Use mvn clean and package as the standard maven build phase
       - run:
           name: Build
