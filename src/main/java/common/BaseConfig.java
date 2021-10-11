@@ -26,7 +26,7 @@ public class BaseConfig {
         ResponseSpecBuilder builder = new ResponseSpecBuilder();
         builder.expectContentType(ContentType.JSON);
         builder.expectStatusCode(SC_OK);
-        builder.expectResponseTime(lessThan(2L), TimeUnit.SECONDS);
+        //builder.expectResponseTime(lessThan(2L), TimeUnit.SECONDS);
         builder.log(LogDetail.BODY);
         return builder.build();
     }
