@@ -29,12 +29,12 @@ jobs:
       # Then run your tests!
       - run:
           name: Test
-          command: mvn test -Denv=qaEnv
+          command: mvn clean test -Denv=qaEnv allure:reports
       #Test
-      - allure/report:
-          target-path: allure-results 
-          results-path: allure-results 
-          artifact-path: Report/Allure
+     # - allure/report:
+     #     target-path: allure-results 
+     #     results-path: allure-results 
+      #    artifact-path: Report/Allure
      
 
 # Invoke jobs via workflows
