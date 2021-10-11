@@ -34,7 +34,9 @@ jobs:
       # REst assured
       - run:
           name: generate allure report
-          command:    allure generate --clean
+          command:  |
+            sudo npm install -g allure-commandline
+            allure generate --clean
           when: always    
      
 
