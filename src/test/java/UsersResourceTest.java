@@ -3,33 +3,39 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
 import static org.hamcrest.Matchers.hasSize;
 
+import common.TestBase;
 import io.restassured.response.Response;
 import java.io.File;
 import org.junit.jupiter.api.Test;
 
-public class TestClass extends TestBase{
-
-
-    @Test()
-    public void getUsers() {
-        Response postsResponse =
-            (Response) given()
-                   .get(users)
-               .then()
-                   .statusCode(200)
-               .and()
-                    .body("findAll{it.username.equals('Delphine')}", hasSize(1))
-                    .extract();
-    }
+public class UsersResourceTest extends TestBase {
 
     @Test()
     public void validateUsersJsonSchemaUser(){
         File jsonSchema = new File(System.getProperty("user.dir") + "/src/main/resources/json-schema/get-users-json-schema.json");
 
         given()
-            .and()
-                .get(users)
-            .then()
-                .body(matchesJsonSchema(jsonSchema));
+            .spec(requestSpec)
+        .and()
+            .get(users)
+        .then()
+            .spec(responseOkSpec)
+        .and()
+            .body(matchesJsonSchema(jsonSchema));
+    }
+
+    @Test()
+    public void getUsers() {
+        Response postsResponse =
+            (Response) given()
+                .and()
+                    .spec(requestSpec)
+                .and()
+                   .get(users)
+               .then()
+                   .spec(responseOkSpec)
+               .and()
+                    .body("findAll{it.username.equals('Delphine')}", hasSize(1))
+                    .extract();
     }
 }
