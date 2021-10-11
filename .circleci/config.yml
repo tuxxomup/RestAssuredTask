@@ -32,8 +32,8 @@ jobs:
           command: mvn test test -Denv=qaEnv
       #Test
       - run: 
-          name: allure/report
-          command: allure-results
+          name: Allure report generation
+          command: allure serve
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
