@@ -15,12 +15,12 @@ import java.util.List;
 import models.User;
 import org.hamcrest.MatcherAssert;
 import org.json.JSONException;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-class UsersResourceTest extends TestBase {
+public class UsersResourceTest extends TestBase {
 
     @Test()
-    void validateUsersJsonSchemaUser() {
+    public void validateUsersJsonSchemaUser() {
         File jsonSchema = new File(System.getProperty("user.dir") + "/src/main/resources/json-schema/get-users-json-schema.json");
 
         given()
@@ -34,7 +34,7 @@ class UsersResourceTest extends TestBase {
     }
 
     @Test()
-    void getUsers() throws JSONException {
+    public void getUsers() throws JSONException {
         Response response =
             (Response) given()
             .and()
