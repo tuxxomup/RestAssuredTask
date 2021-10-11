@@ -1,0 +1,211 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/object1633763647.json",
+  "title": "Root",
+  "type": "array",
+  "default": [],
+  "items": {
+    "$id": "#root/items",
+    "title": "Items",
+    "type": "object",
+    "required": [
+      "id",
+      "name",
+      "username",
+      "email",
+      "address",
+      "phone",
+      "website",
+      "company"
+    ],
+    "properties": {
+      "id": {
+        "$id": "#root/items/id",
+        "title": "Id",
+        "type": "integer",
+        "examples": [
+          1
+        ],
+        "default": 0
+      },
+      "name": {
+        "$id": "#root/items/name",
+        "title": "Name",
+        "type": "string",
+        "default": "",
+        "examples": [
+          "Leanne Graham"
+        ],
+        "pattern": "^.*$"
+      },
+      "username": {
+        "$id": "#root/items/username",
+        "title": "Username",
+        "type": "string",
+        "default": "",
+        "examples": [
+          "Bret"
+        ],
+        "pattern": "^.*$"
+      },
+      "email": {
+        "$id": "#root/items/email",
+        "title": "Email",
+        "type": "string",
+        "default": "",
+        "examples": [
+          "Sincere@april.biz"
+        ],
+        "pattern": "^.*$"
+      },
+      "address": {
+        "$id": "#root/items/address",
+        "title": "Address",
+        "type": "object",
+        "required": [
+          "street",
+          "suite",
+          "city",
+          "zipcode",
+          "geo"
+        ],
+        "properties": {
+          "street": {
+            "$id": "#root/items/address/street",
+            "title": "Street",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "Kulas Light"
+            ],
+            "pattern": "^.*$"
+          },
+          "suite": {
+            "$id": "#root/items/address/suite",
+            "title": "Suite",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "Apt. 556"
+            ],
+            "pattern": "^.*$"
+          },
+          "city": {
+            "$id": "#root/items/address/city",
+            "title": "City",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "Gwenborough"
+            ],
+            "pattern": "^.*$"
+          },
+          "zipcode": {
+            "$id": "#root/items/address/zipcode",
+            "title": "Zipcode",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "92998-3874"
+            ],
+            "pattern": "^.*$"
+          },
+          "geo": {
+            "$id": "#root/items/address/geo",
+            "title": "Geo",
+            "type": "object",
+            "required": [
+              "lat",
+              "lng"
+            ],
+            "properties": {
+              "lat": {
+                "$id": "#root/items/address/geo/lat",
+                "title": "Lat",
+                "type": "string",
+                "default": "",
+                "examples": [
+                  "-37.3159"
+                ],
+                "pattern": "^.*$"
+              },
+              "lng": {
+                "$id": "#root/items/address/geo/lng",
+                "title": "Lng",
+                "type": "string",
+                "default": "",
+                "examples": [
+                  "81.1496"
+                ],
+                "pattern": "^.*$"
+              }
+            }
+          }
+        }
+      },
+      "phone": {
+        "$id": "#root/items/phone",
+        "title": "Phone",
+        "type": "string",
+        "default": "",
+        "examples": [
+          "1-770-736-8031 x56442"
+        ],
+        "pattern": "^.*$"
+      },
+      "website": {
+        "$id": "#root/items/website",
+        "title": "Website",
+        "type": "string",
+        "default": "",
+        "examples": [
+          "hildegard.org"
+        ],
+        "pattern": "^.*$"
+      },
+      "company": {
+        "$id": "#root/items/company",
+        "title": "Company",
+        "type": "object",
+        "required": [
+          "name",
+          "catchPhrase",
+          "bs"
+        ],
+        "properties": {
+          "name": {
+            "$id": "#root/items/company/name",
+            "title": "Name",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "Romaguera-Crona"
+            ],
+            "pattern": "^.*$"
+          },
+          "catchPhrase": {
+            "$id": "#root/items/company/catchPhrase",
+            "title": "Catchphrase",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "Multi-layered client-server neural-net"
+            ],
+            "pattern": "^.*$"
+          },
+          "bs": {
+            "$id": "#root/items/company/bs",
+            "title": "Bs",
+            "type": "string",
+            "default": "",
+            "examples": [
+              "harness real-time e-markets"
+            ],
+            "pattern": "^.*$"
+          }
+        }
+      }
+    }
+  }
+}
