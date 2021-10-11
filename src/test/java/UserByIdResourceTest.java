@@ -1,7 +1,7 @@
-import static common.APIResources.users;
+import static common.APIResources.userById;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
-import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static utils.UserUtils.getAllUsers;
 import static utils.UserUtils.getUserDataByUsername;
@@ -17,43 +17,52 @@ import org.hamcrest.MatcherAssert;
 import org.json.JSONException;
 import org.junit.Test;
 
-public class UsersResourceTest extends TestBase {
+public class UserByIdResourceTest extends TestBase {
 
-    @Test()
-    public void validateUsersJsonSchemaUser() {
-        File jsonSchema = new File(System.getProperty("user.dir") + "/src/main/resources/json-schema/get-users-json-schema.json");
+    //@Test
+    public void validateUserJsonSchemaUser(){
+        File jsonSchema = new File(System.getProperty("user.dir") + "/src/main/resources/json-schema/get-user-json-schema.json");
+
+        List<User> userList = getAllUsers();
+        //Get first met userId
+        int firstUserId = userList.stream().findFirst().get().getId();
 
         given()
             .spec(requestSpec)
         .and()
-            .get(users)
+            .pathParam("userId", firstUserId)
         .then()
             .spec(responseOkSpec)
         .and()
             .body(matchesJsonSchema(jsonSchema));
     }
 
-    @Test()
-    public void validateUserByUsersAPI() throws JSONException {
-        Response response =
-            (Response) given()
-            .and()
-                .spec(requestSpec)
-            .and()
-                .get(users)
-            .then()
-                .spec(responseOkSpec)
-            .and()
-                .body(String.format("findAll{it.username.equals('%s')}", Constants.delphineUserSearchTerms), hasSize(1))
-                .extract();
-
-        List<User> users = getAllUsers();
+   // @Test
+    public void validateUserByUserIdAPI() throws JSONException {
 
         User user = getUserDataByUsername(Constants.delphineUserSearchTerms);
-        String responseUserJson = gson.toJson(user);
+
+        Response response = given()
+                .spec(requestSpec)
+            .and()
+                .pathParam("userId", user.getId())
+            .and()
+                .get(userById)
+            .then()
+                .spec(responseOkSpec)
+                .body("username", equalTo(Constants.delphineUserSearchTerms))
+            .and()
+                .extract()
+                .response();
+
+        User userResponse = response.body().as(User.class);
+
+        String responseUserJson = gson.toJson(userResponse);
         String expectedUserJson = gson.toJson(User.prepareDelphineUser());
 
         //Validate both objects as JSONs
         MatcherAssert.assertThat(JsonUtils.assertEquals(responseUserJson, expectedUserJson), is(Boolean.TRUE));
     }
+
+
 }
