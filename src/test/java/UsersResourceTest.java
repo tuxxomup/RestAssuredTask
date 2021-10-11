@@ -3,19 +3,17 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static utils.UserUtils.getAllUsers;
 import static utils.UserUtils.getUserDataByUsername;
 
 import common.Constants;
-import common.JsonUtils;
 import common.TestBase;
-import io.restassured.response.Response;
 import java.io.File;
-import java.util.List;
 import models.User;
 import org.hamcrest.MatcherAssert;
 import org.json.JSONException;
+import org.junit.Assert;
 import org.junit.Test;
+import utils.JsonUtils;
 
 public class UsersResourceTest extends TestBase {
 
@@ -29,14 +27,14 @@ public class UsersResourceTest extends TestBase {
             .get(users)
         .then()
             .spec(responseOkSpec)
-        .and()
+        .assertThat()
             .body(matchesJsonSchema(jsonSchema));
     }
 
     @Test()
     public void validateUserByUsersAPI() throws JSONException {
-        Response response =
-            (Response) given()
+
+          given()
             .and()
                 .spec(requestSpec)
             .and()
@@ -44,10 +42,7 @@ public class UsersResourceTest extends TestBase {
             .then()
                 .spec(responseOkSpec)
             .and()
-                .body(String.format("findAll{it.username.equals('%s')}", Constants.delphineUserSearchTerms), hasSize(1))
-                .extract();
-
-        List<User> users = getAllUsers();
+                .body(String.format("findAll{it.username.equals('%s')}", Constants.delphineUserSearchTerms), hasSize(1));
 
         User user = getUserDataByUsername(Constants.delphineUserSearchTerms);
         String responseUserJson = gson.toJson(user);

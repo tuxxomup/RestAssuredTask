@@ -22,4 +22,8 @@ public class UserUtils extends TestBase {
         User user = allUsers.stream().filter(u -> u.getUsername().equals(username)).findFirst().get();
         return user;
     }
+
+    public static int getUserIdByUsername(String username){
+        return getUserDataByUsername(username).getId();
+    }
 }

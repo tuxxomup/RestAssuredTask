@@ -7,7 +7,6 @@ import static utils.UserUtils.getAllUsers;
 import static utils.UserUtils.getUserDataByUsername;
 
 import common.Constants;
-import common.JsonUtils;
 import common.TestBase;
 import io.restassured.response.Response;
 import java.io.File;
@@ -16,10 +15,11 @@ import models.User;
 import org.hamcrest.MatcherAssert;
 import org.json.JSONException;
 import org.junit.Test;
+import utils.JsonUtils;
 
 public class UserByIdResourceTest extends TestBase {
 
-    //@Test
+    @Test
     public void validateUserJsonSchemaUser(){
         File jsonSchema = new File(System.getProperty("user.dir") + "/src/main/resources/json-schema/get-user-json-schema.json");
 
@@ -31,13 +31,14 @@ public class UserByIdResourceTest extends TestBase {
             .spec(requestSpec)
         .and()
             .pathParam("userId", firstUserId)
+            .get(userById)
         .then()
             .spec(responseOkSpec)
-        .and()
+        .assertThat()
             .body(matchesJsonSchema(jsonSchema));
     }
 
-   // @Test
+    @Test
     public void validateUserByUserIdAPI() throws JSONException {
 
         User user = getUserDataByUsername(Constants.delphineUserSearchTerms);
@@ -63,6 +64,4 @@ public class UserByIdResourceTest extends TestBase {
         //Validate both objects as JSONs
         MatcherAssert.assertThat(JsonUtils.assertEquals(responseUserJson, expectedUserJson), is(Boolean.TRUE));
     }
-
-
 }

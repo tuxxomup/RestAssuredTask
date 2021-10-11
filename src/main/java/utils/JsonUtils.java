@@ -1,4 +1,4 @@
-package common;
+package utils;
 
 import org.json.JSONException;
 import org.skyscreamer.jsonassert.JSONAssert;
