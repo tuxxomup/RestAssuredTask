@@ -36,11 +36,11 @@
                     <systemProperties>
                         <property>
                             <name>allure.results.directory</name>
-                            <value>target/allure-results</value>
+                            <value>${project.basedir}/target/allure-results</value>
                         </property>
                         <property>
                             <name>allure.report.directory</name>
-                            <value>target/allure-report</value>
+                            <value>${project.basedir}/target/allure-report</value>
                         </property>
                     </systemProperties>
                 </configuration>
@@ -66,8 +66,8 @@
         <jackson.databind.version>2.10.0</jackson.databind.version>
         <wiremock.version>2.27.2</wiremock.version>
         <slf4j.version>1.7.28</slf4j.version>
-        <allure.results.directory>allure-results</allure.results.directory>
-        <allure.report.directory>allure-report</allure.report.directory>
+        <allure.results.directory>${project.basedir}/target/allure-results</allure.results.directory>
+        <allure.report.directory>${project.basedir}/target/allure-report</allure.report.directory>
     </properties>
     <dependencies>
         <dependency>
