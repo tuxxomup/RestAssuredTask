@@ -3,6 +3,7 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertTrue;
 import static utils.UserUtils.getUserDataByUsername;
 
 import common.Constants;
@@ -50,5 +51,11 @@ public class UsersResourceTest extends TestBase {
 
         //Validate both objects as JSONs
         MatcherAssert.assertThat(JsonUtils.assertEquals(responseUserJson, expectedUserJson), is(Boolean.TRUE));
+    }
+
+    @Test()
+    public void justFallingTest() {
+
+        assertTrue("That fails just for the Allure report", false);
     }
 }
