@@ -11,7 +11,7 @@ The project is Java based, implementing:
 - Rest Assured
 - jUnit
 - Allure Reports
-- CircleCi 
+- CircleCI
 
 ## Running the test suites
 
