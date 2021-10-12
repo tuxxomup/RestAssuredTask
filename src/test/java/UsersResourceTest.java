@@ -54,10 +54,4 @@ public class UsersResourceTest extends TestBase {
         //Validate both objects as JSONs
         MatcherAssert.assertThat(JsonUtils.assertEquals(responseUserJson, expectedUserJson), is(Boolean.TRUE));
     }
-
-    @Test()
-    public void justFallingTest() {
-
-        assertTrue("That fails just for the Allure report", false);
-    }
 }
