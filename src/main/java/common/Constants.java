@@ -2,6 +2,6 @@ package common;
 
 public class Constants {
 
-    public static String delphineUserSearchTerms = "Delphine";
+    public static final String delphineUserSearchTerms = "Delphine";
 
 }

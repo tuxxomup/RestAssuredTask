@@ -4,10 +4,12 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertTrue;
+import static utils.FileUtils.getJsonSchema;
 import static utils.UserUtils.getUserDataByUsername;
 
 import common.Constants;
 import common.TestBase;
+import enums.SchemaEnum;
 import java.io.File;
 import models.User;
 import org.hamcrest.MatcherAssert;
@@ -20,7 +22,7 @@ public class UsersResourceTest extends TestBase {
 
     @Test()
     public void validateUsersJsonSchemaUser() {
-        File jsonSchema = new File(System.getProperty("user.dir") + "/src/main/resources/json-schema/get-users-json-schema.json");
+        File jsonSchema = getJsonSchema(SchemaEnum.Users.value);
 
         given()
             .spec(requestSpec)

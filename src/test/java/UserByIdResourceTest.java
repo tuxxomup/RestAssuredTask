@@ -3,11 +3,13 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
+import static utils.FileUtils.getJsonSchema;
 import static utils.UserUtils.getAllUsers;
 import static utils.UserUtils.getUserDataByUsername;
 
 import common.Constants;
 import common.TestBase;
+import enums.SchemaEnum;
 import io.restassured.response.Response;
 import java.io.File;
 import java.util.List;
@@ -21,7 +23,7 @@ public class UserByIdResourceTest extends TestBase {
 
     @Test
     public void validateUserJsonSchemaUser(){
-        File jsonSchema = new File(System.getProperty("user.dir") + "/src/main/resources/json-schema/get-user-json-schema.json");
+        File jsonSchema = getJsonSchema(SchemaEnum.User.value);
 
         List<User> userList = getAllUsers();
         //Get first met userId
