@@ -2,8 +2,6 @@ import static common.APIResources.users;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
 import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertTrue;
 import static utils.FileUtils.getJsonSchema;
 import static utils.UserUtils.getUserDataByUsername;
 
@@ -12,9 +10,7 @@ import common.TestBase;
 import enums.SchemaEnum;
 import java.io.File;
 import models.User;
-import org.hamcrest.MatcherAssert;
 import org.json.JSONException;
-import org.junit.Assert;
 import org.junit.Test;
 import utils.JsonUtils;
 
@@ -52,6 +48,6 @@ public class UsersResourceTest extends TestBase {
         String expectedUserJson = gson.toJson(User.prepareDelphineUser());
 
         //Validate both objects as JSONs
-        MatcherAssert.assertThat(JsonUtils.assertEquals(responseUserJson, expectedUserJson), is(Boolean.TRUE));
+        JsonUtils.assertEquals(responseUserJson, expectedUserJson);
     }
 }
