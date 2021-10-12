@@ -23,7 +23,7 @@ public class TestBase {
     @BeforeClass
     public static void setup() throws IOException {
         BasicConfigurator.configure();
-        String env = System.getProperty("env");
+        String env = getRunTestVariable();
         RestAssured.baseURI = BaseURIBuilder.buildBaseEnvUrl(env);
         JsonPath.config = new JsonPathConfig("UTF-8");
         RestAssured.defaultParser = Parser.JSON;
@@ -31,5 +31,13 @@ public class TestBase {
         requestSpec = getRequestSpecification();
         responseOkSpec = getResponseSpecification();
         gson = new Gson();
+    }
+
+    private static String getRunTestVariable(){
+        try{
+            return System.getProperty("env");
+        }catch (NullPointerException exception){
+            throw new NullPointerException("Set correct ENV variable");
+        }
     }
 }

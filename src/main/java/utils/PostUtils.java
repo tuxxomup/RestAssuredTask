@@ -15,8 +15,7 @@ public class PostUtils {
 
         int userId = UserUtils.getUserIdByUsername(username);
         List<Post> posts = getAllPosts();
-        List<Post> userPosts = posts.stream().filter(c -> c.getUserId() == (userId)).collect(
-            Collectors.toList());
+        List<Post> userPosts = posts.stream().filter(c -> c.getUserId() == (userId)).collect(Collectors.toList());
         return userPosts;
     }
 
