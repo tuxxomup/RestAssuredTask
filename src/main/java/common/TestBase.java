@@ -11,6 +11,7 @@ import io.restassured.path.json.config.JsonPathConfig;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import java.io.IOException;
+import org.apache.log4j.BasicConfigurator;
 import org.junit.BeforeClass;
 
 public class TestBase {
@@ -21,6 +22,7 @@ public class TestBase {
 
     @BeforeClass
     public static void setup() throws IOException {
+        BasicConfigurator.configure();
         String env = System.getProperty("env");
         RestAssured.baseURI = BaseURIBuilder.buildBaseEnvUrl(env);
         JsonPath.config = new JsonPathConfig("UTF-8");

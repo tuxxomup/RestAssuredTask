@@ -11,6 +11,7 @@ import models.Comment;
 import models.Post;
 import org.junit.Test;
 import utils.CommentUtils;
+import utils.LoggerUtils;
 import utils.PostUtils;
 
 
@@ -34,15 +35,7 @@ public class PostResourceTest extends TestBase {
 
         List<Post> userPostList = PostUtils.getPostPerUsername(Constants.delphineUserSearchTerms);
         List<Comment> commentsWithInvalidEmail = CommentUtils.getInvalidEmailInPostComments(userPostList);
-        logInvalidEmails(commentsWithInvalidEmail, getUserIdByUsername(Constants.delphineUserSearchTerms));
+        LoggerUtils.logInvalidEmails(commentsWithInvalidEmail, getUserIdByUsername(Constants.delphineUserSearchTerms));
         assertTrue("There is/are invalid email formats", commentsWithInvalidEmail.isEmpty());
-    }
-
-     void logInvalidEmails(List<Comment> invalidEmail, int userId){
-        for (Comment comment: invalidEmail){
-            String logInvalidEmail = String.format("Post ID:%s by user with ID:%d and comment ID:%s has an email:%s, which is wrong!!!",
-                comment.getPostId(), userId, comment.getId(), comment.getEmail());
-           System.out.println(logInvalidEmail);
-        }
     }
 }
